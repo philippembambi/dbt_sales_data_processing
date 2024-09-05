@@ -1,0 +1,46 @@
+
+version: 2
+
+sources:
+  - name: E_COMMERCE
+    database: SALES_DATALAKE
+    tables:
+      - name: T_SAMPLE_DATASET
+      - name: T_SALES_DATA
+      - name: T_CUSTOMER_CHURN_TESTING
+      - name: T_ECOMMERCE_CUSTOMER_DATA_CUSTOM_RATIOS
+
+models:
+  - name: stg_customers__sample_dataset
+    description: "Customers from T_SAMPLE_DATASET"
+    columns:
+      - name: unique_raw_id
+        data_tests:
+          - unique
+          - not_null
+      - name: customer_id
+      - name: first_name
+      - name: last_name
+      - name: full_name
+      - name: gender
+        data_tests:
+          - accepted_values:
+              values: ['F', 'M', 'UNKNOWN']
+
+  - name: stg_customers__ecommerce_data_ratio
+    description: "Customers from T_ECOMMERCE_CUSTOMER_DATA_CUSTOM_RATIOS"
+    columns:
+      - name: unique_raw_id
+        data_tests:
+          - unique
+          - not_null
+      - name: customer_id
+      - name: first_name
+      - name: last_name
+      - name: full_name
+        data_tests:
+          - not_null
+      - name: gender
+        data_tests:
+          - accepted_values:
+              values: ['F', 'M', 'UNKNOWN']

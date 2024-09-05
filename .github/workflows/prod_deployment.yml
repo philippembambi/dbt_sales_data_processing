@@ -1,0 +1,68 @@
+name: DBT Tests & Merge
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  dbt-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.8
+
+    - name: Install dbt and dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install dbt-snowflake
+        pip install -r requirements.txt
+
+    - name: Set up Snowflake environment
+      env:
+        DBT_PROFILES_DIR: ./
+        run: |
+          mkdir -p ~/.dbt
+          echo "default:" > ~/.dbt/profiles.yml
+          echo "  target: dev" >> ~/.dbt/profiles.yml
+          echo "  outputs:" >> ~/.dbt/profiles.yml
+          echo "    dev:" >> ~/.dbt/profiles.yml
+          echo "      type: snowflake" >> ~/.dbt/profiles.yml
+          echo "      account: $SNOWFLAKE_ACCOUNT" >> ~/.dbt/profiles.yml
+          echo "      user: $SNOWFLAKE_USER" >> ~/.dbt/profiles.yml
+          echo "      password: $SNOWFLAKE_PASSWORD" >> ~/.dbt/profiles.yml
+          echo "      role: $SNOWFLAKE_ROLE" >> ~/.dbt/profiles.yml
+          echo "      database: $SNOWFLAKE_DATABASE" >> ~/.dbt/profiles.yml
+          echo "      warehouse: $SNOWFLAKE_WAREHOUSE" >> ~/.dbt/profiles.yml
+          echo "      schema: $SNOWFLAKE_SCHEMA" >> ~/.dbt/profiles.yml
+          echo "      threads: 1" >> ~/.dbt/profiles.yml
+
+    - name: Run dbt tests
+      run: |
+        dbt deps  # Télécharger les dépendances dbt
+        dbt seed  # (optionnel)
+        dbt run   # Exécuter les modèles dbt
+        dbt test  # Exécuter les tests dbt
+
+  # Étape 6 : Condition de fusion automatique (si tous les tests passent)
+  merge:
+    needs: dbt-test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Fusionner la PR automatiquement si les tests passent
+    - name: Merge PR
+      if: ${{ github.event.pull_request.merged == false }}
+      run: |
+        gh pr merge ${{ github.event.pull_request.number }} --merge --admin
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
