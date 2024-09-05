@@ -2,16 +2,7 @@
 
 WITH base_data AS (
     SELECT 
-        DISTINCT
-            md5(
-                CONCAT(
-                        name, 
-                        surname, 
-                        gender, 
-                        birthdate, 
-                        RANDOM(),
-                        CURRENT_TIMESTAMP())
-            ) AS unique_raw_id
+        UUID_STRING() AS unique_raw_id
         ,   customer_id
         ,   initcap(name::string) AS first_name
         ,   initcap(surname::string) AS last_name

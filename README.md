@@ -10,6 +10,7 @@
 - dbt debug
 - dbt run
 - dbt run --select dbt_model_example : `To run a models separately`
+- dbt run --select my_model+ : `Run model with its deps`
 
 ### Config
 - nano ~/.dbt/profiles.yml
