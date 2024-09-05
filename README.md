@@ -1,15 +1,13 @@
-Welcome to your new dbt project!
+# SALES_DATA_PROCESSING
 
-### Using the starter project
+- python -m venv venv
+- source venv/bin/activate
+- pip install dbt-snowflake
 
-Try running the following commands:
+## Try running the following commands:
 - dbt run
 - dbt test
 
+## Config
 
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+- nano ~/.dbt/profiles.yml
