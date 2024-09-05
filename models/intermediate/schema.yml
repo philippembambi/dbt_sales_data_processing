@@ -2,7 +2,7 @@
 version: 2
 
 models:
-  - name: int_customers__assemby
+  - name: int_customers__assembly
     description: "Assemby of Customers from T_SAMPLE_DATASET and T_ECOMMERCE_CUSTOMER_DATA_CUSTOM_RATIOS"
     columns:
       - name: unique_raw_id
