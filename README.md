@@ -6,6 +6,8 @@
 - pip install -r requirements.txt
 
 ### Try running the following commands:
+
+- dbt deps
 - dbt test
 - dbt debug
 - dbt run
