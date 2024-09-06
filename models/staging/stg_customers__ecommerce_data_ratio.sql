@@ -12,9 +12,9 @@ WITH base_data AS (
                         CURRENT_TIMESTAMP()
             )) AS unique_raw_id
         ,   customer_id
-        ,   initcap(SPLIT(customer_name, ' ')[0]::string) AS first_name
-        ,   initcap(SPLIT(customer_name, ' ')[1]::string) AS last_name
-        ,   initcap(customer_name, ' ') AS full_name
+        ,   INITCAP(SPLIT(customer_name, ' ')[0]::string) AS first_name
+        ,   INITCAP(SPLIT(customer_name, ' ')[1]::string) AS last_name
+        ,   INITCAP(customer_name, ' ') AS full_name
         ,   CASE
                 WHEN gender::string = 'Male' THEN 'M'
                 WHEN gender::string = 'Female' THEN 'F'

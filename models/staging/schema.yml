@@ -44,3 +44,16 @@ models:
         data_tests:
           - accepted_values:
               values: ['F', 'M', 'UNKNOWN']
+
+  - name: stg_products__sales_data
+    description: "Products from T_SALES_DATA"
+    columns:
+      - name: unique_raw_id
+        data_tests:
+          - unique
+          - not_null
+      - name: product_name
+      - name: category
+      - name: price
+      - name: vendor
+      - name: description

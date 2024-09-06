@@ -11,6 +11,7 @@
 - dbt run
 - dbt run --select dbt_model_example : `To run a models separately`
 - dbt run --select my_model+ : `Run model with its deps`
+- dbt init dbt_app_example --profiles-dir=profiles: `To specify a different profile path`
 
 ### Config
 - nano ~/.dbt/profiles.yml
