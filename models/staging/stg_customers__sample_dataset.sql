@@ -2,10 +2,10 @@
 
 WITH base_data AS (
     SELECT 
-        UUID_STRING() AS unique_raw_id
+            UUID_STRING() AS unique_raw_id
         ,   customer_id
-        ,   initcap(name::string) AS first_name
-        ,   initcap(surname::string) AS last_name
+        ,   INITCAP(name::string) AS first_name
+        ,   INITCAP(surname::string) AS last_name
         ,   name::string || surname::string AS full_name
         ,   CASE
                 WHEN COALESCE(gender::string, '') = '' THEN 'UNKNOWN'

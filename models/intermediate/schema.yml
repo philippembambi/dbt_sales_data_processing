@@ -13,3 +13,11 @@ models:
         data_tests:
           - accepted_values:
               values: ['F', 'M', 'UNKNOWN']
+
+  - name: int_products__assembly
+    description: "Assemby of Products"
+    columns:
+      - name: unique_raw_id
+        data_tests:
+          - unique
+          - not_null
