@@ -5,7 +5,7 @@ WITH base_data AS (
             UUID_STRING() AS unique_raw_id
         ,   INITCAP(product::string) AS product_name
         ,   initcap(categorie::string) AS category
-        ,   price_each::number AS price
+        ,   price_each::double AS price
         ,   '' AS vendor
         ,   '' AS description
     FROM {{ source('E_COMMERCE', 'T_SALES_DATA') }}
