@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: E_COMMERCE
+    schema: E_COMMERCE_SCHEMA
+    tables:
+      - name: T_SALES_DATA
+      - name: T_SAMPLE_DATASET  # Ajout de cette table si nécessaire

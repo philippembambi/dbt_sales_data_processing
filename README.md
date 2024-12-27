@@ -4,6 +4,7 @@
 - python3 -m venv venv
 - source venv/bin/activate
 - pip install -r requirements.txt
+- dbt deps"
 
 ### Try running the following commands:
 
@@ -15,14 +16,12 @@
 - dbt run --select my_model+ : `Run model with its deps`
 - dbt init dbt_app_example --profiles-dir=profiles: `To specify a different profile path`
 
-### Config
-- nano ~/.dbt/profiles.yml
+## make configure
 
-### Environnement Variables to set
-- SNOWFLAKE_ACCOUNT
-- SNOWFLAKE_USER
-- SNOWFLAKE_PASSWORD
-- SNOWFLAKE_ROLE
-- SNOWFLAKE_DATABASE
-- SNOWFLAKE_WAREHOUSE
-- SNOWFLAKE_SCHEMA
+
+~/.dbt/profiles.yml
+
+
+dbt test --select int_customers__assembly+
+
+dbt test --select stg_customers__sample_dataset
