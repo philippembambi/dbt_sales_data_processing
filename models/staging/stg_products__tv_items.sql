@@ -3,11 +3,11 @@
 WITH base_data AS (
     SELECT 
             CONCAT('t-tv-', UUID_STRING()) AS unique_raw_id
-        ,   order_id AS product_id
+        ,   MD5(brand) AS product_id
         ,   INITCAP(brand::string) AS product_name
         ,   initcap(resolution::string) AS category
         ,   selling_price::double AS price
-        ,   "size"::integer AS number_of_items
+        ,   size::integer AS number_of_items
         ,   '' AS vendor
         ,   '' AS vendor_address
         ,   '' AS vendor_city

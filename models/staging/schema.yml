@@ -48,3 +48,16 @@ models:
       - name: price
       - name: vendor
       - name: description
+
+  - name: stg_products__tv_items
+    description: "Products from T_TV_DATASET"
+    columns:
+      - name: unique_raw_id
+        data_tests:
+          - unique
+          - not_null
+      - name: product_name
+      - name: category
+      - name: price
+      - name: vendor
+      - name: description

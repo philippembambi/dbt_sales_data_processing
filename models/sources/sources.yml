@@ -5,4 +5,5 @@ sources:
     schema: E_COMMERCE_SCHEMA
     tables:
       - name: T_SALES_DATA
-      - name: T_SAMPLE_DATASET  # Ajout de cette table si nécessaire
+      - name: T_SAMPLE_DATASET
+      - name: T_TV_DATASET
